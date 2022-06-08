@@ -41,12 +41,22 @@ public class AnggotaController {
                 HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
-    public Boolean updateAnggota(@RequestBody AnggotaUpdateDto
-                                             updateAnggota,
-                                 @PathVariable Integer id){
-        anggotaService.updateAnggota(updateAnggota, id);
-        return true;
+//    @PutMapping("/update/{id}")
+//    public Boolean updateAnggota(@RequestBody AnggotaUpdateDto
+//                                             updateAnggota,
+//                                 @PathVariable Integer id){
+//        anggotaService.updateAnggota(updateAnggota, id);
+//        return true;
+//    }
+
+    @PutMapping("/update/{idAnggota}")
+    public ResponseEntity<RestResponse<AnggotaDto>> updateAnggota(@PathVariable Integer idAnggota,
+                                                                  @RequestBody AnggotaUpdateDto updateAnggota){
+        return new ResponseEntity<>(
+                new RestResponse<>(anggotaService.updateAnggota(updateAnggota, idAnggota),
+                        "Data Anggota Diperbaharui",
+                        "200"),
+                HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
