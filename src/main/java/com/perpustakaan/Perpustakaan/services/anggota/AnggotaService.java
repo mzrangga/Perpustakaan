@@ -2,9 +2,11 @@ package com.perpustakaan.Perpustakaan.services.anggota;
 
 import com.perpustakaan.Perpustakaan.dtos.anggota.AnggotaDto;
 import com.perpustakaan.Perpustakaan.dtos.anggota.AnggotaUpdateDto;
+import com.perpustakaan.Perpustakaan.exceptions.CustomException;
 import com.perpustakaan.Perpustakaan.models.Anggota;
 import com.perpustakaan.Perpustakaan.repositories.AnggotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,12 +50,17 @@ public class AnggotaService {
         return AnggotaDto.setData(anggota);
     }
 
+//    public boolean DeleteAnggotaById(Integer id){
+//        anggotaRepository.deleteById(id);
+//        return true;
+//    }
 
+    public AnggotaDto deleteAnggotaById(Integer idAnggota) {
+        Anggota anggota = anggotaRepository.findById(idAnggota)
+                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Anggota Tidak Ditemukan"));
 
-
-    public boolean DeleteAnggotaById(Integer id){
-        anggotaRepository.deleteById(id);
-        return true;
+        anggotaRepository.delete(anggota);
+        return AnggotaDto.setData(anggota);
     }
 
 

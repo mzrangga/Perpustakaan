@@ -1,5 +1,6 @@
 package com.perpustakaan.Perpustakaan.controllers.petugas;
 
+import com.perpustakaan.Perpustakaan.dtos.petugas.PetugasDto;
 import com.perpustakaan.Perpustakaan.dtos.petugas.PetugasUpdateDto;
 import com.perpustakaan.Perpustakaan.exceptions.RestResponse;
 import com.perpustakaan.Perpustakaan.models.Petugas;
@@ -45,16 +46,38 @@ public class PetugasController {
                 HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
-    public Boolean updatePetugas(@RequestBody PetugasUpdateDto
-                                             updatePetugas,
-                                 @PathVariable Integer id) {
-        petugasService.updatePetugas(updatePetugas, id);
-        return true;
+//    Cek update menggunakan Boolean
+//    @PutMapping("/update/{id}")
+//    public Boolean updatePetugas(@RequestBody PetugasUpdateDto
+//                                             updatePetugas,
+//                                 @PathVariable Integer id) {
+//        petugasService.updatePetugas(updatePetugas, id);
+//        return true;
+//    }
+
+    @PutMapping("/update/{idPetugas}")
+    public ResponseEntity<RestResponse<PetugasDto>>
+    updatePetugas(@PathVariable Integer idPetugas,
+                  @RequestBody PetugasUpdateDto updatePetugas) {
+        return new ResponseEntity<>(
+                new RestResponse<>(petugasService.updatePetugas(updatePetugas, idPetugas),
+                        "Data Petugas Diperbaharui",
+                        "200"),
+                HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Boolean DeletePetugasById(@PathVariable Integer id) {
-        return petugasService.DeletePetugasById(id);
+
+    @DeleteMapping("/delete/{idPetugas}")
+    public ResponseEntity<RestResponse<PetugasDto>> DeletePetugasById(@PathVariable Integer idPetugas) {
+        return new ResponseEntity<>(
+                new RestResponse<>(petugasService.delete(idPetugas),
+                        "Data Petugas Berhasil Dihapus",
+                        "200"),
+                HttpStatus.OK);
     }
+//    Cek delete menggunakan Boolean
+//    @DeleteMapping("/delete/{id}")
+//    public Boolean DeletePetugasById(@PathVariable Integer id) {
+//        return petugasService.DeletePetugasById(id);
+//    }
 }

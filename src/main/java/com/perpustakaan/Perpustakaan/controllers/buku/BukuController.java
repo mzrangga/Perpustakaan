@@ -1,5 +1,6 @@
 package com.perpustakaan.Perpustakaan.controllers.buku;
 
+import com.perpustakaan.Perpustakaan.dtos.buku.BukuDto;
 import com.perpustakaan.Perpustakaan.dtos.buku.BukuUpdateDto;
 import com.perpustakaan.Perpustakaan.exceptions.RestResponse;
 import com.perpustakaan.Perpustakaan.models.Buku;
@@ -43,15 +44,37 @@ public class BukuController {
                 HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
-    public Boolean updateBuku(@RequestBody BukuUpdateDto updateBuku,
-                              @PathVariable Integer id) {
-        bukuService.updateBuku(updateBuku, id);
-        return true;
+//    Cek Update menggunakan Boolean
+//    @PutMapping("/update/{id}")
+//    public Boolean updateBuku(@RequestBody BukuUpdateDto updateBuku,
+//                              @PathVariable Integer id) {
+//        bukuService.updateBuku(updateBuku, id);
+//        return true;
+//    }
+
+    @PutMapping("/update/{idBuku}")
+    public ResponseEntity<RestResponse<BukuDto>>
+    updateBuku(@PathVariable Integer idBuku,
+               @RequestBody BukuUpdateDto updateBuku) {
+        return new ResponseEntity<>(
+                new RestResponse<>(bukuService.updateBuku(updateBuku, idBuku),
+                        "Data Buku Diperbaharui",
+                        "200"),
+                HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Boolean deleteBukuById(@PathVariable Integer id) {
-        return bukuService.DeleteBukuById(id);
+    @DeleteMapping("/delete/{idBuku}")
+    public ResponseEntity<RestResponse<BukuDto>> deleteBuku(@PathVariable Integer idBuku) {
+        return new ResponseEntity<>(
+                new RestResponse<>(bukuService.deleteBuku(idBuku),
+                        "Data Buku Berhasil Dihapus",
+                        "200"),
+                HttpStatus.OK);
     }
+
+//    Cek Delete menggunakan Boolean
+//    @DeleteMapping("/delete/{id}")
+//    public Boolean deleteBukuById(@PathVariable Integer id) {
+//        return bukuService.DeleteBukuById(id);
+//    }
 }

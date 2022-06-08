@@ -41,6 +41,7 @@ public class AnggotaController {
                 HttpStatus.CREATED);
     }
 
+//    Cek update menggunakan Boolean
 //    @PutMapping("/update/{id}")
 //    public Boolean updateAnggota(@RequestBody AnggotaUpdateDto
 //                                             updateAnggota,
@@ -59,9 +60,18 @@ public class AnggotaController {
                 HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Boolean DeleteAnggotaById(@PathVariable Integer id){
-        return anggotaService.DeleteAnggotaById(id);
-    }
+//    Cek delete menggunakan Boolean
+//    @DeleteMapping("/delete/{id}")
+//    public Boolean DeleteAnggotaById(@PathVariable Integer id){
+//        return anggotaService.DeleteAnggotaById(id);
+//    }
 
+    @DeleteMapping("/delete/{idAnggota}")
+    public ResponseEntity<RestResponse<AnggotaDto>> DeleteAnggotaById(@PathVariable Integer idAnggota){
+        return new ResponseEntity<>(
+                new RestResponse<>(anggotaService.deleteAnggotaById(idAnggota),
+                        "Data Anggota Berhasil Dihapus",
+                        "200"),
+                HttpStatus.OK);
+    }
 }
