@@ -18,10 +18,6 @@ public class AnggotaService {
     @Autowired
     private AnggotaRepository anggotaRepository;
 
-//    public List<AnggotaDto> findAllAnggota() {
-//        return AnggotaDto.toList(anggotaRepository.findAll());
-//    }
-
     public List<AnggotaDto> findAllAnggota() {
         return anggotaRepository.findAll()
                 .stream().map(AnggotaDto::setData)
@@ -53,6 +49,10 @@ public class AnggotaService {
 
         anggotaRepository.delete(anggota);
         return AnggotaDto.setData(anggota);
+    }
+
+    public List<AnggotaDto> findAllAnggotaById(Integer idAnggota) {
+        return AnggotaDto.makeList(anggotaRepository.getIdAnggota(idAnggota));
     }
 
 

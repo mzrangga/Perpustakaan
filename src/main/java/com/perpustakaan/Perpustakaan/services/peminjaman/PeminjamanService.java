@@ -69,4 +69,8 @@ public class PeminjamanService {
         peminjamanRepository.delete(peminjaman);
         return PeminjamanDto.setData(peminjaman);
     }
+
+    public List<PeminjamanDto> findPeminjamanById(Integer idPeminjaman) {
+        return PeminjamanDto.makeList(peminjamanRepository.getIdPeminjaman(idPeminjaman));
+    }
 }

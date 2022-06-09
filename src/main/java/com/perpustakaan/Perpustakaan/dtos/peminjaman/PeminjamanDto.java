@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -42,6 +43,14 @@ public class PeminjamanDto implements Serializable {
         Stream<PeminjamanDto> result =
                 peminjaman.stream().map(PeminjamanDto::setData);
         return result.toList();
+    }
+
+    public static List<PeminjamanDto> makeList(List<Peminjaman> peminjamans) {
+        List<PeminjamanDto> result = new ArrayList<>();
+        for (Peminjaman peminjaman : peminjamans) {
+            result.add(setData(peminjaman));
+        }
+        return result;
     }
 
     public Peminjaman convert() {

@@ -57,4 +57,8 @@ public class BukuService {
         bukuRepository.delete(buku);
         return BukuDto.setData(buku);
     }
+
+    public List<BukuDto> findAllAnggotaById(Integer idBuku) {
+        return BukuDto.makeList(bukuRepository.getIdBuku(idBuku));
+    }
 }

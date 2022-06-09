@@ -6,6 +6,7 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -35,6 +36,14 @@ public class PetugasDto implements Serializable {
                 petugas.getPhonePetugas(),
                 petugas.getAlamatPetugas()
         );
+    }
+
+    public static List<PetugasDto> makeList(List<Petugas> petugases){
+        List<PetugasDto> result = new ArrayList<>();
+        for(Petugas petugas : petugases){
+            result.add(setData(petugas));
+        }
+        return result;
     }
 
     public Petugas convert(){

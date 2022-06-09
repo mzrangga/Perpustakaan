@@ -52,4 +52,12 @@ public class BukuDto implements Serializable {
                 tahunPenerbit
         );
     }
+
+    public static List<BukuDto> makeList(List<Buku> bukus) {
+        List<BukuDto> result = new ArrayList<>();
+        for (Buku buku : bukus) {
+            result.add(setData(buku));
+        }
+        return result;
+    }
 }

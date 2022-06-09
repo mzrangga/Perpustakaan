@@ -46,15 +46,6 @@ public class PetugasController {
                 HttpStatus.CREATED);
     }
 
-//    Cek update menggunakan Boolean
-//    @PutMapping("/update/{id}")
-//    public Boolean updatePetugas(@RequestBody PetugasUpdateDto
-//                                             updatePetugas,
-//                                 @PathVariable Integer id) {
-//        petugasService.updatePetugas(updatePetugas, id);
-//        return true;
-//    }
-
     @PutMapping("/update/{idPetugas}")
     public ResponseEntity<RestResponse<PetugasDto>>
     updatePetugas(@PathVariable Integer idPetugas,
@@ -75,9 +66,9 @@ public class PetugasController {
                         "200"),
                 HttpStatus.OK);
     }
-//    Cek delete menggunakan Boolean
-//    @DeleteMapping("/delete/{id}")
-//    public Boolean DeletePetugasById(@PathVariable Integer id) {
-//        return petugasService.DeletePetugasById(id);
-//    }
+
+    @GetMapping("/findById")
+    public List<PetugasDto> getIdPetugas(@RequestParam Integer id) {
+        return petugasService.findAllPetugasById(id);
+    }
 }

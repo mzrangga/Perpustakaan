@@ -30,19 +30,6 @@ public class PetugasService {
         return PetugasDto.setData(petugas);
     }
 
-//   Cek update menggunakan Boolean
-//    public Boolean updatePetugas(PetugasUpdateDto updatePetugas,
-//                                 Integer idPetugas) {
-//        Petugas petugas = petugasRepository.findById(idPetugas)
-//                .orElseThrow(
-//                () -> new RuntimeException("Petugas tidak ditemukan"));
-//
-//        petugas.setNamaPetugas(updatePetugas.getNamaPetugas());
-//        petugas.setJabatanPetugas(updatePetugas.getJabatanPetugas());
-//        petugasRepository.save(petugas);
-//        return true;
-//    }
-
     public PetugasDto updatePetugas(
         PetugasUpdateDto updatePetugas,Integer idPetugas) {
     Petugas petugas = petugasRepository.findById(idPetugas)
@@ -65,9 +52,8 @@ public class PetugasService {
         petugasRepository.deleteById(idPetugas);
         return PetugasDto.setData(petugas);
     }
-//    Cek delete menggunakan Boolean
-//    public boolean DeletePetugasById(Integer id){
-//        petugasRepository.deleteById(id);
-//        return true;
-//    }
+
+    public List<PetugasDto> findAllPetugasById(Integer idPetugas){
+        return PetugasDto.makeList(petugasRepository.getIdPetugas(idPetugas));
+    }
 }

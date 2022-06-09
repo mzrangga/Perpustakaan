@@ -72,4 +72,9 @@ public class AnggotaController {
                         "200"),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/findById")
+    public List<AnggotaDto> findAllAnggotaById(@RequestParam Integer id){
+        return anggotaService.findAllAnggotaById(id);
+    }
 }

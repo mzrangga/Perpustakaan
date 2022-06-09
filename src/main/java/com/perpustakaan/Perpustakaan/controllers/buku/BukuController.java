@@ -44,13 +44,6 @@ public class BukuController {
                 HttpStatus.CREATED);
     }
 
-//    Cek Update menggunakan Boolean
-//    @PutMapping("/update/{id}")
-//    public Boolean updateBuku(@RequestBody BukuUpdateDto updateBuku,
-//                              @PathVariable Integer id) {
-//        bukuService.updateBuku(updateBuku, id);
-//        return true;
-//    }
 
     @PutMapping("/update/{idBuku}")
     public ResponseEntity<RestResponse<BukuDto>>
@@ -72,9 +65,8 @@ public class BukuController {
                 HttpStatus.OK);
     }
 
-//    Cek Delete menggunakan Boolean
-//    @DeleteMapping("/delete/{id}")
-//    public Boolean deleteBukuById(@PathVariable Integer id) {
-//        return bukuService.DeleteBukuById(id);
-//    }
+    @GetMapping("/findById")
+    public List<BukuDto> getIdBuku(@RequestParam Integer id) {
+        return bukuService.findAllAnggotaById(id);
+    }
 }

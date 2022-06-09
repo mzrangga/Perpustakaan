@@ -67,4 +67,9 @@ public class PeminjamanController {
                         "200"),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/findById")
+    public List<PeminjamanDto> getidPeminjaman(@RequestParam Integer id){
+        return peminjamanService.findPeminjamanById(id);
+    }
 }
