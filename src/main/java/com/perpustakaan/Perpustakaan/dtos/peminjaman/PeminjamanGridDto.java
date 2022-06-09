@@ -27,7 +27,7 @@ public class PeminjamanGridDto implements Serializable {
                 toList();
     }
 
-    private static PeminjamanGridDto set(Peminjaman peminjaman) {
+    public static PeminjamanGridDto set(Peminjaman peminjaman) {
         return new PeminjamanGridDto(
                 peminjaman.getId(),
                 peminjaman.getTanggalPinjam(),
@@ -48,4 +48,5 @@ public class PeminjamanGridDto implements Serializable {
                 buku.getTahunPenerbit()
         );
     }
+
 }

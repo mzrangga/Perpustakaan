@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PeminjamanService {
@@ -34,7 +35,9 @@ public class PeminjamanService {
     private PetugasRepository petugasRepository;
 
     public List<PeminjamanGridDto> findAllPeminjaman() {
-        return PeminjamanGridDto.toList(peminjamanRepository.findAll());
+        return peminjamanRepository.findAll()
+                .stream().map(PeminjamanGridDto::set)
+                .collect(Collectors.toList());
     }
 
     public List<PeminjamanGridDto> insertNewPeminjaman(PeminjamanInsertDto newPeminjaman) {

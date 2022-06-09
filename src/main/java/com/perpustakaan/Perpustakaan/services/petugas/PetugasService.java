@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PetugasService {
@@ -18,7 +19,9 @@ public class PetugasService {
     private PetugasRepository petugasRepository;
 
     public List<PetugasDto> findAllPetugas() {
-        return PetugasDto.toList(petugasRepository.findAll());
+        return petugasRepository.findAll()
+                .stream().map(PetugasDto::setData)
+                .collect(Collectors.toList());
     }
 
     public PetugasDto insertPetugas(PetugasDto newPetugas) {

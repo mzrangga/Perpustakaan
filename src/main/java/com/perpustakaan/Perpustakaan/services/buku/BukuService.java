@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BukuService {
@@ -22,7 +23,9 @@ public class BukuService {
     }
 
     public List<BukuDto> findAllBuku() {
-        return BukuDto.toList(bukuRepository.findAll());
+        return bukuRepository.findAll()
+                .stream().map(BukuDto::setData)
+                .collect(Collectors.toList());
     }
 
     public BukuDto insertBuku(BukuDto newBuku) {
@@ -30,19 +33,6 @@ public class BukuService {
         bukuRepository.save(buku);
         return BukuDto.setData(buku);
     }
-
-//    Cek update menggunakan Boolean
-//    public Boolean updateBuku(BukuUpdateDto updateBuku,
-//                              Integer idBuku) {
-//        Buku buku = bukuRepository.findById(idBuku)
-//                .orElseThrow(
-//                        () -> new RuntimeException("Buku tidak ditemukan"));
-//
-//        buku.setJudulBuku(updateBuku.getJudulBuku());
-//        buku.setPenerbitBuku(updateBuku.getPenerbitBuku());
-//        bukuRepository.save(buku);
-//        return true;
-//    }
 
     public BukuDto updateBuku(BukuUpdateDto updateBuku, Integer idBuku
                               ) {
@@ -67,9 +57,4 @@ public class BukuService {
         bukuRepository.delete(buku);
         return BukuDto.setData(buku);
     }
-//    Cek Delete menggunakan Boolean
-//    public boolean DeleteBukuById(Integer id){
-//        bukuRepository.deleteById(id);
-//        return true;
-//    }
 }

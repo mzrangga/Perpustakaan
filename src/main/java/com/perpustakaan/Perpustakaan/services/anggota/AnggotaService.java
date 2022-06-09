@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AnggotaService {
@@ -17,8 +18,14 @@ public class AnggotaService {
     @Autowired
     private AnggotaRepository anggotaRepository;
 
+//    public List<AnggotaDto> findAllAnggota() {
+//        return AnggotaDto.toList(anggotaRepository.findAll());
+//    }
+
     public List<AnggotaDto> findAllAnggota() {
-        return AnggotaDto.toList(anggotaRepository.findAll());
+        return anggotaRepository.findAll()
+                .stream().map(AnggotaDto::setData)
+                .collect(Collectors.toList());
     }
 
     public AnggotaDto insertAnggota(AnggotaDto newAnggota) {
