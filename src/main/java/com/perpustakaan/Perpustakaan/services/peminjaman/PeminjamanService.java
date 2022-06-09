@@ -51,7 +51,7 @@ public class PeminjamanService {
             (PeminjamanUpdateDto updatePeminjaman, Integer idPeminjaman) {
         Peminjaman peminjaman = peminjamanRepository.findById(idPeminjaman)
                 .orElseThrow(() -> new RuntimeException("Peminjaman tidak ditemukan"));
-        peminjaman.setTanggalPinjam(updatePeminjaman.getTanggalKembali()
+        peminjaman.setTanggalKembali(updatePeminjaman.getTanggalKembali()
         == null ? LocalDate.parse(peminjaman.getTanggalKembali()) : updatePeminjaman.getTanggalKembali());
 
         peminjamanRepository.save(peminjaman);
