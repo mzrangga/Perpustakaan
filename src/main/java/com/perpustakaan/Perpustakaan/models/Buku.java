@@ -1,5 +1,6 @@
 package com.perpustakaan.Perpustakaan.models;
 
+import com.perpustakaan.Perpustakaan.dtos.buku.BukuDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,5 +44,16 @@ public class Buku {
 
     public Buku(Integer id) {
         this.id = id;
+    }
+
+    public static BukuDto setData(Buku idBuku) {
+        return new BukuDto(
+                idBuku.getId(),
+                idBuku.getKodeBuku(),
+                idBuku.getJudulBuku(),
+                idBuku.getPenulisBuku(),
+                idBuku.getPenerbitBuku(),
+                idBuku.getTahunPenerbit()
+        );
     }
 }

@@ -1,5 +1,6 @@
 package com.perpustakaan.Perpustakaan.models;
 
+import com.perpustakaan.Perpustakaan.dtos.anggota.AnggotaDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,5 +48,17 @@ public class Anggota {
 
     public Anggota(Integer id) {
         this.id = id;
+    }
+
+    public static AnggotaDto setData(Anggota idAnggota) {
+        return new AnggotaDto(
+                idAnggota.getId(),
+                idAnggota.getKodeAnggota(),
+                idAnggota.getNamaAnggota(),
+                idAnggota.getJkAnggota(),
+                idAnggota.getJurusanAnggota(),
+                idAnggota.getPhoneAnggota(),
+                idAnggota.getAlamat()
+        );
     }
 }

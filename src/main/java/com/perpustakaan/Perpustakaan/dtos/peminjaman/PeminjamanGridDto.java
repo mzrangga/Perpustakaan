@@ -1,5 +1,8 @@
 package com.perpustakaan.Perpustakaan.dtos.peminjaman;
 
+import com.perpustakaan.Perpustakaan.dtos.anggota.AnggotaDto;
+import com.perpustakaan.Perpustakaan.dtos.buku.BukuDto;
+import com.perpustakaan.Perpustakaan.dtos.petugas.PetugasDto;
 import com.perpustakaan.Perpustakaan.models.Anggota;
 import com.perpustakaan.Perpustakaan.models.Buku;
 import com.perpustakaan.Perpustakaan.models.Peminjaman;
@@ -13,13 +16,25 @@ import java.util.List;
 @Data
 public class PeminjamanGridDto implements Serializable {
     private final Integer id;
-    private final LocalDate tanggalPinjam;
-    private final LocalDate tanggalKembali;
-    private final Buku idBuku;
-    private final Anggota idAnggota;
-    private final Petugas idPetugas;
+    private final String tanggalPinjam;
+    private final String tanggalKembali;
+    private final BukuDto idBuku;
+    private final AnggotaDto idAnggota;
+    private final PetugasDto idPetugas;
 
     public static List<PeminjamanGridDto> toList(List<Peminjaman> all) {
+        return all.stream().map(PeminjamanGridDto::set).
+                toList();
+    }
 
+    private static PeminjamanGridDto set(Peminjaman peminjaman) {
+        return new PeminjamanGridDto(
+                peminjaman.getId(),
+                peminjaman.getTanggalPinjam(),
+                peminjaman.getTanggalKembali(),
+                Buku.setData(peminjaman.getIdBuku()),
+                Anggota.setData(peminjaman.getIdAnggota()),
+                Petugas.setData(peminjaman.getIdPetugas())
+        );
     }
 }

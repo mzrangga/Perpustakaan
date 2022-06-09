@@ -16,16 +16,20 @@ public class PeminjamanService {
     @Autowired
     private PeminjamanRepository peminjamanRepository;
 
-    public List<PeminjamanDto> findAllPeminjaman() {
-        return PeminjamanDto.toList(peminjamanRepository.findAll());
+    public List<PeminjamanGridDto> findAllPeminjaman() {
+        return PeminjamanGridDto.toList(peminjamanRepository.findAll());
     }
 
-    public List<PeminjamanGridDto> savePeminjaman(PeminjamanInsertDto
-                                                      newPeminjaman) {
+    public List<PeminjamanGridDto> insertNewPeminjaman(PeminjamanInsertDto newPeminjaman) {
         Peminjaman peminjaman = newPeminjaman.convert();
         peminjamanRepository.save(peminjaman);
         return PeminjamanGridDto.toList(peminjamanRepository.findAll());
     }
 
+    public List<PeminjamanGridDto> updatePeminjaman(PeminjamanDto peminjaman) {
+        Peminjaman peminjaman1 = peminjaman.convert();
+        peminjamanRepository.save(peminjaman1);
+        return PeminjamanGridDto.toList(peminjamanRepository.findAll());
+    }
 
 }

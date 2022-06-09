@@ -17,6 +17,8 @@ public class PeminjamanDto implements Serializable {
     private final String tanggalPinjam;
     private final String tanggalKembali;
     private final Integer idBuku;
+//    private final String judulBuku;
+//    private final String penulisBuku;
     private final Integer idAnggota;
     private final Integer idPetugas;
 
@@ -26,6 +28,8 @@ public class PeminjamanDto implements Serializable {
                 peminjaman.getTanggalPinjam(),
                 peminjaman.getTanggalKembali(),
                 peminjaman.getIdBuku().getId(),
+//                peminjaman.getIdBuku().getJudul(),
+//                peminjaman.getIdBuku().getPenulis(),
                 peminjaman.getIdAnggota().getId(),
                 peminjaman.getIdPetugas().getId()
         );
@@ -33,7 +37,8 @@ public class PeminjamanDto implements Serializable {
 
     public static List<PeminjamanDto> toList(List<Peminjaman> peminjaman) {
         if (peminjaman.size() == 0) {
-            throw new CustomException(HttpStatus.NOT_FOUND, "Tidak Ada Data Yang Sesuai.");
+            throw new CustomException(
+                    HttpStatus.NOT_FOUND, "Tidak Ada Data Yang Sesuai.");
         }
 
         Stream<PeminjamanDto> result =
@@ -42,4 +47,13 @@ public class PeminjamanDto implements Serializable {
     }
 
 
+    public Peminjaman convert() {
+        return new Peminjaman(
+                LocalDate.parse(tanggalPinjam),
+                LocalDate.parse(tanggalKembali),
+                new com.perpustakaan.Perpustakaan.models.Buku(idBuku),
+                new com.perpustakaan.Perpustakaan.models.Anggota(idAnggota),
+                new com.perpustakaan.Perpustakaan.models.Petugas(idPetugas)
+        );
+    }
 }

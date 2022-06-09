@@ -1,5 +1,6 @@
 package com.perpustakaan.Perpustakaan.models;
 
+import com.perpustakaan.Perpustakaan.dtos.petugas.PetugasDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,5 +40,15 @@ public class Petugas {
 
     public Petugas(Integer id) {
         this.id = id;
+    }
+
+    public static PetugasDto setData(Petugas idPetugas) {
+        return new PetugasDto(
+                idPetugas.getId(),
+                idPetugas.getNamaPetugas(),
+                idPetugas.getJabatanPetugas(),
+                idPetugas.getPhonePetugas(),
+                idPetugas.getAlamatPetugas()
+        );
     }
 }

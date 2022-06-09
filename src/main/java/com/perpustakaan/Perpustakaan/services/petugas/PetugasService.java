@@ -54,6 +54,7 @@ public class PetugasService {
     petugasRepository.save(petugas);
     return PetugasDto.setData(petugas);
 }
+
     public PetugasDto delete (Integer idPetugas) {
         Petugas petugas = petugasRepository.findById(idPetugas)
                 .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Petugas Tidak Ditemukan"));

@@ -1,6 +1,7 @@
 package com.perpustakaan.Perpustakaan.controllers.peminjaman;
 
 import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanDto;
+import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanGridDto;
 import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanInsertDto;
 import com.perpustakaan.Perpustakaan.exceptions.RestResponse;
 import com.perpustakaan.Perpustakaan.models.Buku;
@@ -25,7 +26,7 @@ public class PeminjamanController {
     private PeminjamanRepository peminjamanRepository;
 
     @GetMapping
-    public ResponseEntity<RestResponse<List<PeminjamanDto>>> findAllAnggota(){
+    public ResponseEntity<RestResponse<List<PeminjamanGridDto>>> findAllAnggota(){
         return new ResponseEntity<>(
                 new RestResponse<>(peminjamanService.findAllPeminjaman(),
                         peminjamanService.findAllPeminjaman().size() + " Data Peminjaman Ditemukan",
@@ -37,9 +38,18 @@ public class PeminjamanController {
     public ResponseEntity<RestResponse<PeminjamanDto>> insertNewAnggota
             (@RequestBody PeminjamanInsertDto newPeminjaman){
         return new ResponseEntity(
-                new RestResponse<>(peminjamanService.savePeminjaman
-                        (newPeminjaman),
+                new RestResponse<>(peminjamanService.insertNewPeminjaman(newPeminjaman),
                         "Berhasil Menambahkan Peminjaman.",
+                        "201"),
+                HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<RestResponse<PeminjamanDto>> updatePeminjaman
+            (@RequestBody PeminjamanDto peminjamanDto){
+        return new ResponseEntity(
+                new RestResponse<>(peminjamanService.updatePeminjaman(peminjamanDto),
+                        "Berhasil Mengubah Peminjaman.",
                         "201"),
                 HttpStatus.CREATED);
     }
