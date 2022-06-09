@@ -45,12 +45,14 @@ public class PeminjamanController {
                 HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{idPeminjaman}")
     public ResponseEntity<RestResponse<PeminjamanDto>> updatePeminjaman
-            (@RequestBody PeminjamanDto peminjamanDto){
+            (@PathVariable Integer idPeminjaman,
+             @RequestBody PeminjamanUpdateDto updatePeminjaman){
         return new ResponseEntity(
-                new RestResponse<>(peminjamanService.updatePeminjaman(peminjamanDto),
-                        "Berhasil Mengubah Peminjaman.",
+                new RestResponse<>(peminjamanService.updatePeminjaman
+                        (updatePeminjaman, idPeminjaman),
+                        "Berhasil Mengubah Data Peminjaman.",
                         "201"),
                 HttpStatus.CREATED);
     }

@@ -47,10 +47,15 @@ public class PeminjamanService {
         return PeminjamanGridDto.toList(peminjamanRepository.findAll());
     }
 
-    public List<PeminjamanGridDto> updatePeminjaman(PeminjamanDto peminjaman) {
-        Peminjaman peminjaman1 = peminjaman.convert();
-        peminjamanRepository.save(peminjaman1);
-        return PeminjamanGridDto.toList(peminjamanRepository.findAll());
+    public List<PeminjamanDto> updatePeminjaman
+            (PeminjamanUpdateDto updatePeminjaman, Integer idPeminjaman) {
+        Peminjaman peminjaman = peminjamanRepository.findById(idPeminjaman)
+                .orElseThrow(() -> new RuntimeException("Peminjaman tidak ditemukan"));
+        peminjaman.setTanggalPinjam(updatePeminjaman.getTanggalKembali()
+        == null ? LocalDate.parse(peminjaman.getTanggalKembali()) : updatePeminjaman.getTanggalKembali());
+
+        peminjamanRepository.save(peminjaman);
+        return PeminjamanDto.toList(peminjamanRepository.findAll());
     }
 
     public PeminjamanDto deletePeminjaman(Integer idPeminjaman) {

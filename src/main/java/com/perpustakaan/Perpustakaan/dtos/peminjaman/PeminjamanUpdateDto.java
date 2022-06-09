@@ -15,8 +15,8 @@ public class PeminjamanUpdateDto implements Serializable {
     private final Integer id;
     private final LocalDate tanggalKembali;
 
-    public PeminjamanUpdateDto convert(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("");
-        return new PeminjamanUpdateDto(id,tanggalKembali);
-    }
+//    public PeminjamanUpdateDto convert(){
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("");
+//        return new PeminjamanUpdateDto(id,tanggalKembali);
+//    }
 }
