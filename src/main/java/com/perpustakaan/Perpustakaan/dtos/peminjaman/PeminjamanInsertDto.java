@@ -12,18 +12,17 @@ import java.time.LocalDate;
 public class PeminjamanInsertDto {
     private final LocalDate tanggalPinjam;
     private final LocalDate tanggalKembali;
-    private final Buku idBuku;
-    private final Anggota idAnggota;
-    private final Petugas idPetugas;
+    private final Integer idBuku;
+    private final Integer idAnggota;
+    private final Integer idPetugas;
 
-    public Peminjaman convert() {
+    public Peminjaman convert(Buku buku, Anggota anggota, Petugas petugas) {
         return new Peminjaman(
                 tanggalPinjam,
                 tanggalKembali,
-                idBuku,
-                idAnggota,
-                idPetugas);
+                buku,
+                anggota,
+                petugas);
     }
-
 
 }

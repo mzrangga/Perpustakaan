@@ -37,4 +37,15 @@ public class PeminjamanGridDto implements Serializable {
                 Petugas.setData(peminjaman.getIdPetugas())
         );
     }
+
+    private static BukuDto setBuku(Buku buku) {
+        return new BukuDto(
+                buku.getId(),
+                buku.getKodeBuku() == null ? "aduh" : buku.getKodeBuku().toString(),
+                buku.getJudulBuku(),
+                buku.getPenulisBuku(),
+                buku.getPenerbitBuku(),
+                buku.getTahunPenerbit()
+        );
+    }
 }

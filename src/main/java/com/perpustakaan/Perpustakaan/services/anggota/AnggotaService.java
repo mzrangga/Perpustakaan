@@ -27,19 +27,8 @@ public class AnggotaService {
         return AnggotaDto.setData(anggota);
     }
 
-//    public Boolean updateAnggota(AnggotaUpdateDto updateAnggota,
-//                                 Integer idAnggota) {
-//        Anggota anggota = anggotaRepository.findById(idAnggota)
-//                .orElseThrow(
-//                () -> new RuntimeException("Anggota tidak ditemukan"));
-//
-//        anggota.setNamaAnggota(updateAnggota.getNamaAnggota());
-//        anggotaRepository.save(anggota);
-//        return true;
-//    }
-
-    public AnggotaDto updateAnggota(AnggotaUpdateDto updateAnggota,Integer idAnggota
-                                 ) {
+    public AnggotaDto updateAnggota
+            (AnggotaUpdateDto updateAnggota,Integer idAnggota) {
         Anggota anggota = anggotaRepository.findById(idAnggota)
                 .orElseThrow(() -> new RuntimeException("Anggota tidak ditemukan"));
 
@@ -49,11 +38,6 @@ public class AnggotaService {
         anggotaRepository.save(anggota);
         return AnggotaDto.setData(anggota);
     }
-
-//    public boolean DeleteAnggotaById(Integer id){
-//        anggotaRepository.deleteById(id);
-//        return true;
-//    }
 
     public AnggotaDto deleteAnggotaById(Integer idAnggota) {
         Anggota anggota = anggotaRepository.findById(idAnggota)

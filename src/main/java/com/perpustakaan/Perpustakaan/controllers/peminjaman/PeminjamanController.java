@@ -3,6 +3,7 @@ package com.perpustakaan.Perpustakaan.controllers.peminjaman;
 import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanDto;
 import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanGridDto;
 import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanInsertDto;
+import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanUpdateDto;
 import com.perpustakaan.Perpustakaan.exceptions.RestResponse;
 import com.perpustakaan.Perpustakaan.models.Buku;
 import com.perpustakaan.Perpustakaan.models.Peminjaman;
@@ -35,11 +36,11 @@ public class PeminjamanController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<RestResponse<PeminjamanDto>> insertNewAnggota
+    public ResponseEntity<RestResponse<PeminjamanGridDto>> insertNewAnggota
             (@RequestBody PeminjamanInsertDto newPeminjaman){
         return new ResponseEntity(
                 new RestResponse<>(peminjamanService.insertNewPeminjaman(newPeminjaman),
-                        "Berhasil Menambahkan Peminjaman.",
+                        peminjamanService.findAllPeminjaman().size() + " Data Peminjaman Ditemukan",
                         "201"),
                 HttpStatus.CREATED);
     }
@@ -54,6 +55,13 @@ public class PeminjamanController {
                 HttpStatus.CREATED);
     }
 
-
-
+    @DeleteMapping("/delete/{idPeminjaman}")
+    public ResponseEntity<RestResponse<PeminjamanDto>> deletePeminjaman
+            (@PathVariable Integer idPeminjaman){
+        return new ResponseEntity<>(
+                new RestResponse<>(peminjamanService.deletePeminjaman(idPeminjaman),
+                        "Data Peminjaman Dihapus",
+                        "200"),
+                HttpStatus.OK);
+    }
 }

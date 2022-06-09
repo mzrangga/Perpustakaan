@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -17,19 +18,16 @@ public class PeminjamanDto implements Serializable {
     private final String tanggalPinjam;
     private final String tanggalKembali;
     private final Integer idBuku;
-//    private final String judulBuku;
-//    private final String penulisBuku;
     private final Integer idAnggota;
     private final Integer idPetugas;
 
     public static PeminjamanDto setData(Peminjaman peminjaman) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return new PeminjamanDto(
                 peminjaman.getId(),
                 peminjaman.getTanggalPinjam(),
                 peminjaman.getTanggalKembali(),
                 peminjaman.getIdBuku().getId(),
-//                peminjaman.getIdBuku().getJudul(),
-//                peminjaman.getIdBuku().getPenulis(),
                 peminjaman.getIdAnggota().getId(),
                 peminjaman.getIdPetugas().getId()
         );
@@ -45,7 +43,6 @@ public class PeminjamanDto implements Serializable {
                 peminjaman.stream().map(PeminjamanDto::setData);
         return result.toList();
     }
-
 
     public Peminjaman convert() {
         return new Peminjaman(
