@@ -60,7 +60,9 @@ public class PeminjamanService {
 
     public PeminjamanDto deletePeminjaman(Integer idPeminjaman) {
         Peminjaman peminjaman = peminjamanRepository.findById(idPeminjaman)
-                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Peminjaman dengan id " + idPeminjaman + " tidak ditemukan"));
+                .orElseThrow(()
+                        -> new CustomException(HttpStatus.NOT_FOUND, "Peminjaman dengan id " + idPeminjaman + " tidak ditemukan"));
+
         peminjamanRepository.delete(peminjaman);
         return PeminjamanDto.setData(peminjaman);
     }

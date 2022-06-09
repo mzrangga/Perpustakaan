@@ -66,7 +66,8 @@ public class AnggotaController {
     public ResponseEntity<RestResponse<AnggotaDto>> DeleteAnggotaById
             (@PathVariable Integer idAnggota){
         return new ResponseEntity<>(
-                new RestResponse<>(anggotaService.deleteAnggotaById(idAnggota),
+                new RestResponse<>(
+                        anggotaService.deleteAnggotaById(idAnggota),
                         "Data Anggota Berhasil Dihapus",
                         "200"),
                 HttpStatus.OK);

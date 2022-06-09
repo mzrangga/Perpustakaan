@@ -61,8 +61,9 @@ public class PeminjamanController {
     public ResponseEntity<RestResponse<PeminjamanDto>> deletePeminjaman
             (@PathVariable Integer idPeminjaman){
         return new ResponseEntity<>(
-                new RestResponse<>(peminjamanService.deletePeminjaman(idPeminjaman),
-                        "Data Peminjaman Dihapus",
+                new RestResponse<>(
+                        peminjamanService.deletePeminjaman(idPeminjaman),
+                        "Data Peminjaman Berhasil Dihapus",
                         "200"),
                 HttpStatus.OK);
     }

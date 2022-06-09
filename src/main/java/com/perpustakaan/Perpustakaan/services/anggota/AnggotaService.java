@@ -41,7 +41,8 @@ public class AnggotaService {
 
     public AnggotaDto deleteAnggotaById(Integer idAnggota) {
         Anggota anggota = anggotaRepository.findById(idAnggota)
-                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Anggota Tidak Ditemukan"));
+                .orElseThrow(()
+                        -> new CustomException(HttpStatus.NOT_FOUND, "Anggota Tidak Ditemukan"));
 
         anggotaRepository.delete(anggota);
         return AnggotaDto.setData(anggota);
