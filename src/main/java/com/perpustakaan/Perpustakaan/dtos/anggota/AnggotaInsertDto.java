@@ -14,7 +14,4 @@ public class AnggotaInsertDto implements Serializable {
     private final String phoneAnggota;
     private final String alamat;
 
-    public Anggota convert() {
-        return new Anggota(kodeAnggota, namaAnggota, jkAnggota, jurusanAnggota, phoneAnggota, alamat);
-    }
 }

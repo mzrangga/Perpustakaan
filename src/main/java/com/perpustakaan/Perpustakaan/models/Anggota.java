@@ -44,4 +44,8 @@ public class Anggota {
         this.phoneAnggota = phoneAnggota;
         this.alamat = alamat;
     }
+
+    public Anggota(Integer id) {
+        this.id = id;
+    }
 }
