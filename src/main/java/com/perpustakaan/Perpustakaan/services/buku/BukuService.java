@@ -37,7 +37,8 @@ public class BukuService {
     public BukuDto updateBuku(BukuUpdateDto updateBuku, Integer idBuku
                               ) {
         Buku buku = bukuRepository.findById(idBuku)
-                .orElseThrow(() -> new RuntimeException("Buku tidak ditemukan"));
+                .orElseThrow(() -> new RuntimeException
+                        ("Buku dengan id " + idBuku + " tidak ditemukan"));
 
         buku.setJudulBuku(updateBuku.getJudulBuku()
                 == null ? buku.getJudulBuku() : updateBuku.getJudulBuku());
@@ -52,7 +53,7 @@ public class BukuService {
     public BukuDto deleteBuku(Integer idBuku) {
         Buku buku = bukuRepository.findById(idBuku)
                 .orElseThrow(() -> new
-                        CustomException(HttpStatus.NOT_FOUND, "Buku tidak ditemukan"));
+                        CustomException(HttpStatus.NOT_FOUND, "Buku dengan id " + idBuku + " tidak ditemukan"));
 
         bukuRepository.delete(buku);
         return BukuDto.setData(buku);

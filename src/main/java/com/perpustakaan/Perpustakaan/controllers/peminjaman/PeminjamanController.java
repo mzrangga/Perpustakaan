@@ -5,11 +5,7 @@ import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanGridDto;
 import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanInsertDto;
 import com.perpustakaan.Perpustakaan.dtos.peminjaman.PeminjamanUpdateDto;
 import com.perpustakaan.Perpustakaan.exceptions.RestResponse;
-import com.perpustakaan.Perpustakaan.models.Buku;
-import com.perpustakaan.Perpustakaan.models.Peminjaman;
-import com.perpustakaan.Perpustakaan.repositories.AnggotaRepository;
 import com.perpustakaan.Perpustakaan.repositories.PeminjamanRepository;
-import com.perpustakaan.Perpustakaan.services.anggota.AnggotaService;
 import com.perpustakaan.Perpustakaan.services.peminjaman.PeminjamanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +21,11 @@ public class PeminjamanController {
     private PeminjamanService peminjamanService;
     @Autowired
     private PeminjamanRepository peminjamanRepository;
+
+    @GetMapping("/findById")
+    public List<PeminjamanDto> getidPeminjaman(@RequestParam Integer id){
+        return peminjamanService.findPeminjamanById(id);
+    }
 
     @GetMapping
     public ResponseEntity<RestResponse<List<PeminjamanGridDto>>> findAllAnggota(){
@@ -68,8 +69,4 @@ public class PeminjamanController {
                 HttpStatus.OK);
     }
 
-    @GetMapping("/findById")
-    public List<PeminjamanDto> getidPeminjaman(@RequestParam Integer id){
-        return peminjamanService.findPeminjamanById(id);
-    }
 }

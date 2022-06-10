@@ -1,18 +1,14 @@
 package com.perpustakaan.Perpustakaan.dtos.buku;
 
-import com.perpustakaan.Perpustakaan.exceptions.CustomException;
 import com.perpustakaan.Perpustakaan.exceptions.EntityNotFound;
 import com.perpustakaan.Perpustakaan.models.Buku;
 import lombok.Data;
-import org.springframework.http.HttpStatus;
 
-import javax.persistence.EntityNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.perpustakaan.Perpustakaan.dtos.anggota.AnggotaDto.setData;
 
 @Data
 public class BukuDto implements Serializable {

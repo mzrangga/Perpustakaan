@@ -33,7 +33,8 @@ public class AnggotaService {
     public AnggotaDto updateAnggota
             (AnggotaUpdateDto updateAnggota,Integer idAnggota) {
         Anggota anggota = anggotaRepository.findById(idAnggota)
-                .orElseThrow(() -> new RuntimeException("Anggota tidak ditemukan"));
+                .orElseThrow(() -> new RuntimeException
+                        ("Anggota dengan id " + idAnggota + " tidak ditemukan"));
 
         anggota.setNamaAnggota(updateAnggota.getNamaAnggota()
         == null ? anggota.getNamaAnggota() : updateAnggota.getNamaAnggota());
@@ -45,7 +46,7 @@ public class AnggotaService {
     public AnggotaDto deleteAnggotaById(Integer idAnggota) {
         Anggota anggota = anggotaRepository.findById(idAnggota)
                 .orElseThrow(()
-                        -> new CustomException(HttpStatus.NOT_FOUND, "Anggota Tidak Ditemukan"));
+                        -> new CustomException(HttpStatus.NOT_FOUND, "Anggota dengan id " + idAnggota + " tidak ditemukan"));
 
         anggotaRepository.delete(anggota);
         return AnggotaDto.setData(anggota);

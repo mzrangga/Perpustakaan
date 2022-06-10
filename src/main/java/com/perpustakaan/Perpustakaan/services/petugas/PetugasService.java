@@ -33,7 +33,8 @@ public class PetugasService {
     public PetugasDto updatePetugas(
         PetugasUpdateDto updatePetugas,Integer idPetugas) {
     Petugas petugas = petugasRepository.findById(idPetugas)
-            .orElseThrow(() -> new RuntimeException("Petugas tidak ditemukan"));
+            .orElseThrow(() -> new CustomException
+                    (HttpStatus.NOT_FOUND, "Petugas dengan id " + idPetugas + " tidak ditemukan"));
 
     petugas.setNamaPetugas(updatePetugas.getNamaPetugas()
             == null ? petugas.getNamaPetugas() : updatePetugas.getNamaPetugas());
@@ -47,7 +48,7 @@ public class PetugasService {
 
     public PetugasDto delete (Integer idPetugas) {
         Petugas petugas = petugasRepository.findById(idPetugas)
-                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Petugas Tidak Ditemukan"));
+                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Petugas dengan id " + idPetugas + " tidak ditemukan"));
 
         petugasRepository.deleteById(idPetugas);
         return PetugasDto.setData(petugas);

@@ -1,7 +1,6 @@
 package com.perpustakaan.Perpustakaan.dtos.peminjaman;
 
 import com.perpustakaan.Perpustakaan.exceptions.CustomException;
-import com.perpustakaan.Perpustakaan.models.Anggota;
 import com.perpustakaan.Perpustakaan.models.Peminjaman;
 import lombok.Data;
 import org.springframework.http.HttpStatus;

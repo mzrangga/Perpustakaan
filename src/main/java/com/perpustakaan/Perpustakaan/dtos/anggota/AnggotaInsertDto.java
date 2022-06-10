@@ -1,6 +1,5 @@
 package com.perpustakaan.Perpustakaan.dtos.anggota;
 
-import com.perpustakaan.Perpustakaan.models.Anggota;
 import lombok.Data;
 
 import java.io.Serializable;

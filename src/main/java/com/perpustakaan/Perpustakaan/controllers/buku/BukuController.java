@@ -26,6 +26,11 @@ public class BukuController {
         this.bukuRepository = bukuRepository;
     }
 
+    @GetMapping("/findById")
+    public List<BukuDto> getIdBuku(@RequestParam Integer id) {
+        return bukuService.findAllAnggotaById(id);
+    }
+
     @RequestMapping
     public ResponseEntity<RestResponse<List<Buku>>> findAllBuku() {
         return new ResponseEntity<>(
@@ -63,10 +68,5 @@ public class BukuController {
                         "Data Buku Berhasil Dihapus",
                         "200"),
                 HttpStatus.OK);
-    }
-
-    @GetMapping("/findById")
-    public List<BukuDto> getIdBuku(@RequestParam Integer id) {
-        return bukuService.findAllAnggotaById(id);
     }
 }

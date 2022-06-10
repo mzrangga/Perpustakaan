@@ -22,6 +22,11 @@ public class AnggotaController {
     @Autowired
     private AnggotaService anggotaService;
 
+    @GetMapping("/findById")
+    public List<AnggotaDto> findAllAnggotaById(@RequestParam Integer id){
+        return anggotaService.findAllAnggotaById(id);
+    }
+
     @GetMapping
     public ResponseEntity<RestResponse<List<Anggota>>> findAllAnggota(){
         return new ResponseEntity<>(
@@ -40,15 +45,6 @@ public class AnggotaController {
                         "201"),
                 HttpStatus.CREATED);
     }
-
-//    Cek update menggunakan Boolean
-//    @PutMapping("/update/{id}")
-//    public Boolean updateAnggota(@RequestBody AnggotaUpdateDto
-//                                             updateAnggota,
-//                                 @PathVariable Integer id){
-//        anggotaService.updateAnggota(updateAnggota, id);
-//        return true;
-//    }
 
     @PutMapping("/update/{idAnggota}")
     public ResponseEntity<RestResponse<AnggotaDto>> updateAnggota
@@ -71,10 +67,5 @@ public class AnggotaController {
                         "Data Anggota Berhasil Dihapus",
                         "200"),
                 HttpStatus.OK);
-    }
-
-    @GetMapping("/findById")
-    public List<AnggotaDto> findAllAnggotaById(@RequestParam Integer id){
-        return anggotaService.findAllAnggotaById(id);
     }
 }

@@ -1,6 +1,5 @@
 package com.perpustakaan.Perpustakaan.repositories;
 
-import com.perpustakaan.Perpustakaan.models.Buku;
 import com.perpustakaan.Perpustakaan.models.Peminjaman;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
